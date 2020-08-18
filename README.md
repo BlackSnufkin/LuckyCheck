@@ -1,18 +1,25 @@
 # LuckyCheck
-Modular Privesc ToolBox Add or Remove Tools as you want just with 4 lines and 6 lines for make it look good ;)
-
+* Modular Privesc ToolBox Add or Remove Tools as you want just with 4 lines and 6 lines for make it look good ;)
+* For each tool it will generate a output file.
+* Then merge the all files in one Big ASS report and REMOVE duplicate.
+* Ziping The generated files and send them to the Privesc Server with PUT Method
 ### Usage:
 ```
-usage: WinCheck.exe [-h] -i  [-b | -a | -f]
+usage: LinCheck.py [-h] -i  [-b | -a | -f]
 
-Example: WinCheck.exe -i 127.0.0.1 -b (Basic Scan)
+Example: LinCheck.py -i 127.0.0.1 -b (Basic Scan)
 
 optional arguments:
   -h, --help      show this help message and exit
   -i, --server   The Privesc Server IP.
-  -b, --basic     Run Basic WinCheck Scan (3 Tools) .
-  -a, --advanced  Run advanced WinCheck Scan (7 Tools).
-  -f, --full      Run Full WinCheck Scan (14 Tools).
+  -b, --basic     Run Basic WinCheck Scan (2 Tools) .
+  -a, --advanced  Run advanced WinCheck Scan (4 Tools).
+  -f, --full      Run Full WinCheck Scan (8 Tools).
+```
+To read the reports:
+```
+unzip LinCheck-Basci.zip
+less -R LinCheck-Basic-report.txt
 ```
 ## How To Add NewTool:
 * Create funcation where all the tools funcations are with the new tool you want
