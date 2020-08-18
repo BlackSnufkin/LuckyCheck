@@ -3,16 +3,16 @@ Modular Privesc ToolBox Add or Remove Tools as you want just with 4 lines and 6 
 
 ### Usage:
 ```
-usage: LinCheck.py [-h] -i  [-b | -a | -f]
+usage: WinCheck.exe [-h] -i  [-b | -a | -f]
 
-Example: LinCheck.py -i 127.0.0.1 -b (Basic Scan)
+Example: WinCheck.exe -i 127.0.0.1 -b (Basic Scan)
 
 optional arguments:
   -h, --help      show this help message and exit
   -i , --server   The Privesc Server IP.
-  -b, --basic     Run Basic LinCheck Scan (2 Tools) .
-  -a, --advanced  Run advanced LinCheck Scan (4 Tools).
-  -f, --full      Run Full LinCheck Scan (8 Tools).
+  -b, --basic     Run Basic WinCheck Scan (3 Tools) .
+  -a, --advanced  Run advanced WinCheck Scan (7 Tools).
+  -f, --full      Run Full WinCheck Scan (14 Tools).
 .
 
 ```
