@@ -32,7 +32,7 @@ def NewTool(base_url):
 * Delete the funcation from the source and from the Bascic Advanced and Full
 
 ## Credits & Tools:
-### WinCheck Tools:
+WinCheck Tools:
 * [winPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
 * [winPE](https://github.com/carlospolop/winPE)
 * [Seatbealt](https://github.com/Lexus89/SharpPack/tree/master/Seatbelt)
@@ -47,7 +47,7 @@ def NewTool(base_url):
 * [Check-Service-Paths](https://github.com/BleepSec/Check-Service-Paths)
 * [Invoke-Privesc](https://github.com/enjoiz/Privesc)
 
-### LinCheck Tools
+LinCheck Tools:
 * [linPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
 * [LinEnum](https://github.com/rebootuser/LinEnum)
 * [PE-Linux](https://github.com/WazeHell/PE-Linux)
