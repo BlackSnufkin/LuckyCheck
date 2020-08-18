@@ -1,7 +1,7 @@
 # LuckyCheck
 * Modular Privesc ToolBox Add or Remove Tools as you want just with 4 lines and 6 lines for make it look good ;)
 * For each tool it will generate a output file.
-* Then merge the all files in one Big ASS report and REMOVE duplicate.
+* Then merge all files into one Big ASS report and REMOVE duplicate.
 * Ziping The generated files and send them to the Privesc Server with PUT Method
 ### Usage:
 ```
