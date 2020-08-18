@@ -1,8 +1,20 @@
 # LuckyCheck
-Modular Privesc ToolBox Add or Remove Tools as you want just with 4 lines and 6 lines for make it look good ;) 
-* Example: python3 LinCheck.py -i 127.0.0.1 -b (Basic scan)
+Modular Privesc ToolBox Add or Remove Tools as you want just with 4 lines and 6 lines for make it look good ;)
 
-## How To Add NewTool
+### Usage:
+```
+usage: WinCheck.py [-h] -i  [-b | -a | -f]
+
+Example: WinCheck.exe -i 127.0.0.1 -b (Basic Scan)
+
+optional arguments:
+  -h, --help      show this help message and exit
+  -i , --server   The Privesc Server IP.
+  -b, --basic     Run Basic WinCheck Scan.
+  -a, --advanced  Run advanced WinCheck Scan.
+  -f, --full      Run Full WinCheck Scan.
+```
+## How To Add NewTool:
 * Create funcation where all the tools funcations are with the new tool you want
 * Select where you want to add this new tool, Basic Advanced or Full
 * Just add the function NewTool(base_url) where you this funcation to run
@@ -15,12 +27,12 @@ def NewTool(base_url):
     LinCheck(cmd=NewTool, url=NewTool_url, output_file="NewTool.txt", input_file="NewTool.sh")
     print('[$] Done NewTool Scan.\n')
    ```
-## How to Remove Tools
+## How to Remove Tools:
 * Select the tool you want to remove
 * Delete the funcation from the source and from the Bascic Advanced and Full
 
 ## Credits & Tools:
-WinCheck Tools:
+### WinCheck Tools:
 * [winPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
 * [winPE](https://github.com/carlospolop/winPE)
 * [Seatbealt](https://github.com/Lexus89/SharpPack/tree/master/Seatbelt)
@@ -35,7 +47,7 @@ WinCheck Tools:
 * [Check-Service-Paths](https://github.com/BleepSec/Check-Service-Paths)
 * [Invoke-Privesc](https://github.com/enjoiz/Privesc)
 
-LinCheck Tools
+### LinCheck Tools
 * [linPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
 * [LinEnum](https://github.com/rebootuser/LinEnum)
 * [PE-Linux](https://github.com/WazeHell/PE-Linux)
