@@ -48,7 +48,7 @@ def login():
     """)
 
 
-parser = argparse.ArgumentParser(description='Example: LinCheck.exe -i 127.0.0.1 -b (Basic Scan) ')
+parser = argparse.ArgumentParser(description='Example: LinCheck.py -i 127.0.0.1 -b (Basic Scan) ')
 parser.add_argument('-i', '--server', type=str, metavar='', required=True, help='The Privesc Server IP.')
 group = parser.add_mutually_exclusive_group()
 group.add_argument('-b', '--basic', action='store_true', help='Run Basic LinCheck Scan (2 Tools) . ')
