@@ -13,8 +13,6 @@ optional arguments:
   -b, --basic     Run Basic WinCheck Scan (3 Tools) .
   -a, --advanced  Run advanced WinCheck Scan (7 Tools).
   -f, --full      Run Full WinCheck Scan (14 Tools).
-
-
 ```
 ## How To Add NewTool:
 * Create funcation where all the tools funcations are with the new tool you want
