@@ -9,7 +9,7 @@ Example: WinCheck.exe -i 127.0.0.1 -b (Basic Scan)
 
 optional arguments:
   -h, --help      show this help message and exit
-  -i , --server   The Privesc Server IP.
+  -i, --server   The Privesc Server IP.
   -b, --basic     Run Basic WinCheck Scan (3 Tools) .
   -a, --advanced  Run advanced WinCheck Scan (7 Tools).
   -f, --full      Run Full WinCheck Scan (14 Tools).
