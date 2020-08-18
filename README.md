@@ -16,12 +16,12 @@ optional arguments:
   -a, --advanced  Run advanced WinCheck Scan (4 Tools).
   -f, --full      Run Full WinCheck Scan (8 Tools).
 ```
-To read the reports:
+### To read the reports:
 ```
-unzip LinCheck-Basci.zip
+unzip LinCheck-Bascic.zip
 less -R LinCheck-Basic-report.txt
 ```
-## How To Add NewTool:
+### How To Add NewTool:
 * Create funcation where all the tools funcations are with the new tool you want
 * Select where you want to add this new tool, Basic Advanced or Full
 * Just add the function NewTool(base_url) where you this funcation to run
@@ -34,11 +34,11 @@ def NewTool(base_url):
     LinCheck(cmd=NewTool, url=NewTool_url, output_file="NewTool.txt", input_file="NewTool.sh")
     print('[$] Done NewTool Scan.\n')
    ```
-## How to Remove Tools:
+### How to Remove Tools:
 * Select the tool you want to remove
 * Delete the funcation from the source and from the Bascic Advanced and Full
 
-## Credits & Tools:
+### Credits & Tools:
 WinCheck Tools:
 * [winPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
 * [winPE](https://github.com/carlospolop/winPE)
