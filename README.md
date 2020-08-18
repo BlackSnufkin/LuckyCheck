@@ -31,7 +31,7 @@ WinCheck Tools:
 * [SharpUp](https://github.com/GhostPack/SharpUp)
 * [Watson](https://github.com/rasta-mouse/Watson)
 * [Sherlock](https://github.com/rasta-mouse/Sherlock)
-* [SessionGopher)](https://github.com/Arvanaghi/SessionGopher)
+* [SessionGopher](https://github.com/Arvanaghi/SessionGopher)
 * [Check-Service-Paths](https://github.com/BleepSec/Check-Service-Paths)
 * [Invoke-Privesc](https://github.com/enjoiz/Privesc)
 
