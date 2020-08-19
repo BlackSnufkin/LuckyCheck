@@ -265,7 +265,7 @@ def SharpChromium(base_url):
     # Github: https://github.com/djhohnstein/SharpChromium
     # Author: djhohnstein
     SharpChromium_url = base_url + 'SharpChromium.exe'
-    SharpChromium = 'SharpChromium.exe -full'
+    SharpChromium = 'SharpChromium.exe full'
     print('\n[+] Running SharpChromium Scan ')
     WinCheck(cmd=SharpChromium, url=SharpChromium_url, output_file='SharpChromium.txt',
              input_file='SharpChromium.exe')
