@@ -127,8 +127,7 @@ def edit_and_send(directory, mode):
     # Zip the folder with all the reports and send it to the Privesc Server with PUT method and cleans al the files
     read_files = glob.glob("*.txt")
     base_name = directory + '-' + mode
-    print(base_name)
-
+    
     with open("result.txt", "wb") as outfile:
         for f in read_files:
             with open(f, "rb") as infile:
@@ -145,7 +144,7 @@ def edit_and_send(directory, mode):
     os.remove('result.txt')
     file_paths = []
     os.chdir('..')
-    print(os.getcwd())
+    
     for root, directories, files in os.walk(base_name):
         for filename in files:
             filepath = os.path.join(root, filename)
