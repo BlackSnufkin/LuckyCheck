@@ -12,9 +12,9 @@ Example: LinCheck.py -i 127.0.0.1 -b (Basic Scan)
 optional arguments:
   -h, --help      show this help message and exit
   -i, --server   The Privesc Server IP.
-  -b, --basic     Run Basic WinCheck Scan (2 Tools) .
-  -a, --advanced  Run advanced WinCheck Scan (4 Tools).
-  -f, --full      Run Full WinCheck Scan (8 Tools).
+  -b, --basic     Run Basic LinCheck Scan (2 Tools) .
+  -a, --advanced  Run advanced LinCheck Scan (4 Tools).
+  -f, --full      Run Full LinCheck Scan (8 Tools).
 ```
 ### To read the reports:
 ```
