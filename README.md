@@ -24,7 +24,7 @@ less -R LinCheck-Basic-report.txt
 ### How To Add NewTool:
 * Create funcation where all the tools funcations are with the new tool you want
 * Select where you want to add this new tool, Basic Advanced or Full
-* Just add the function NewTool(base_url) where you this funcation to run
+* Just add the function NewTool(base_url) where you want this funcation to run
 * Same Work in Both Files WinCheck and LinCheck 
 ```
 def NewTool(base_url): 
