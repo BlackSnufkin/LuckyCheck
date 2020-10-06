@@ -279,7 +279,7 @@ def main():
 
     if args.basic:
         login()
-        work_space(directory='LinCheck', mode='Basic')
+        work_space(directory=os.uname()[1], mode='Basic')
         print(
             '[!] Settings:\n\t[*] Server IP: {}\n\t[*] Mode: Basic\n\t[*] Work Space: {}\n\t[*] Estimated Run time: ** 5 Minutes **\n'.format(
                 SERVER_IP, os.getcwd()))
@@ -288,13 +288,13 @@ def main():
         print('[*] Running Basic LinCheck scan')
         linPEAS(base_url)
         LinEnum(base_url)
-        edit_and_send(directory='LinCheck', mode='Basic')
+        edit_and_send(directory=os.uname()[1], mode='Basic')
         seconds = time.time() - start_time
         print('[$] Done Basic LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
 
     elif args.advanced:
         login()
-        work_space(directory='LinCheck', mode='Advanced')
+        work_space(directory=os.uname()[1], mode='Advanced')
         print(
             '[!] Settings:\n\t[*] Server IP: {}\n\t[*] Mode: Advanced\n\t[*] Work Space: {}\n\t[*] Estimated Run time: ** 9 Minutes **\n'.format(
                 SERVER_IP, os.getcwd()))
@@ -305,13 +305,13 @@ def main():
         LinEnum(base_url)
         les(base_url)
         PE(base_url)
-        edit_and_send(directory='LinCheck', mode='Advanced')
+        edit_and_send(directory=os.uname()[1], mode='Advanced')
         seconds = time.time() - start_time
         print('[$] Done Advanced LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
 
     elif args.full:
         login()
-        work_space(directory='LinCheck', mode='Full')
+        work_space(directory=os.uname()[1], mode='Full')
         print(
             '[!] Settings: \n\t[*] Server IP: {}\n\t[*] Mode: Full \n\t[*] Work Space: {} \n\t[*] Estimated Run time: ** 12 Minutes ** \n'.format(
                 SERVER_IP, os.getcwd()))
@@ -326,7 +326,7 @@ def main():
         linux_privesc(base_url)
         linux_security_test(base_url)
         lse(base_url)
-        edit_and_send(directory='LinCheck', mode='Full')
+        edit_and_send(directory=os.uname()[1], mode='Full')
         seconds = time.time() - start_time
         print('[$] Done Full LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
 

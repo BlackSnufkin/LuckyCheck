@@ -133,7 +133,7 @@ def edit_and_send(directory, mode):
                 outfile.write(infile.read())
 
     lines_seen = set()
-    with open("WinCheck-{}-report.txt".format(mode), "w") as output_file:
+    with open("{}-{}-report.txt".format(directory,mode), "w") as output_file:
         for each_line in open("result.txt", "r"):
             if each_line not in lines_seen:
                 output_file.write(each_line)
@@ -351,7 +351,7 @@ def user_choice(mode):
     if user_accept == 'n':
         print('[!] Deleting All files..')
         os.chdir('..')
-        shutil.rmtree('WinCheck-{}'.format(mode))
+        shutil.rmtree(os.environ['COMPUTERNAME']+'-{}'.format(mode))
         print('[!] Bye Bye...')
         sys.exit()
     else:
@@ -367,7 +367,7 @@ def main():
 
     if args.basic:
         login()
-        work_space(directory='WinCheck', mode='Basic')
+        work_space(directory=os.environ['COMPUTERNAME'], mode='Basic')
         print(
             '[!] Settings:\n\t[*] Server IP: {}\n\t[*] Mode: Basic\n\t[*] Work Space: {}\n\t[*] Estimated Run time: ** 5 Minutes **\n'.format(
                 SERVER_IP, os.getcwd()))
@@ -378,13 +378,13 @@ def main():
         winPEAS(base_url)
         Seatbelt(base_url)
         JAWS(base_url)
-        edit_and_send(directory='WinCheck', mode='Basic')
+        edit_and_send(directory=os.environ['COMPUTERNAME'], mode='Basic')
         seconds = time.time() - start_time
         print('[$] Done Basic WinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
 
     elif args.advanced:
         login()
-        work_space(directory='WinCheck', mode='Advanced')
+        work_space(directory=os.environ['COMPUTERNAME'], mode='Advanced')
         print(
             '[!] Settings:\n\t[*] Server IP: {}\n\t[*] Mode: Advanced\n\t[*] Work Space: {}\n\t[*] Estimated Run time: ** 7-5 Minutes **\n'.format(
                 SERVER_IP, os.getcwd()))
@@ -400,13 +400,13 @@ def main():
         Watson(base_url)
         SessionGopher(base_url)
         SharpUp(base_url)
-        edit_and_send(directory='WinCheck', mode='Advanced')
+        edit_and_send(directory=os.environ['COMPUTERNAME'], mode='Advanced')
         seconds = time.time() - start_time
         print('[$] Done Advanced WinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
 
     elif args.full:
         login()
-        work_space(directory='WinCheck', mode='Full')
+        work_space(directory=os.environ['COMPUTERNAME'], mode='Full')
         print(
             '[!] Settings: \n\t[*] Server IP: {}\n\t[*] Mode: Full \n\t[*] Work Space: {} \n\t[*] Estimated Run time: ** 18-13 Minutes ** \n'.format(
                 SERVER_IP, os.getcwd()))
@@ -436,7 +436,7 @@ def main():
         SharpUp(base_url)
         privesc(base_url)
         os.remove("accesschk.exe")
-        edit_and_send(directory='WinCheck', mode='Full')
+        edit_and_send(directory=os.environ['COMPUTERNAME'], mode='Full')
         seconds = time.time() - start_time
         print('[$] Done Full WinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
 
