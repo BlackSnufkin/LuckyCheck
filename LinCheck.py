@@ -107,7 +107,7 @@ def edit_and_send(directory, mode):
             with open(f, "rb") as infile:
                 outfile.write(infile.read())
     lines_seen = set()
-    with open("LinCheck-{}-report.txt".format(mode), "w") as output_file:
+    with open("{}-{}-report.txt".format(directory,mode), "w") as output_file:
         for each_line in open("result.txt", "r"):
             if each_line not in lines_seen:
                 output_file.write(each_line)
@@ -263,7 +263,7 @@ def user_choice(mode):
     if user_accept == 'n':
         print('[!] Deleting All files..')
         os.chdir('..')
-        shutil.rmtree('LinCheck-{}'.format(mode))
+        shutil.rmtree(os.uname()[1]+'-{}'.format(mode))
         print('[!] Bye Bye...')
         exit()
     else:
