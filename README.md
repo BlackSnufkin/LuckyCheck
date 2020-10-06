@@ -1,7 +1,7 @@
 # LuckyCheck
 * Modular Privesc ToolBox Add or Remove Tools as you want just with 4 lines and 6 lines for make it look good ;)
+* Self update most off the tools (Still trying to find a way to compile .sln on linux for windows =/)
 * For each tool it will generate a output file.
-* Self update most off tools (trying to find a way to compile .sln on linux for windows =/)
 * Merge all files into one Big ASS report and REMOVE duplicate.
 * Ziping the generated files and send them to the Privesc Server via PUT Method
 ### Usage:
