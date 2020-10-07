@@ -30,15 +30,15 @@ WinCheck_url = [
 def update(base_directory, url):
     file = url.split('/')
     file_name = file[-1]
-    print('\n\t[#] Downloading File: {}'.format(file_name.split('.')[0]))
+    print('\t[#] Downloading File: {}'.format(file_name.split('.')[0]))
     file2update = base_directory + '{}'.format(file_name)
-    with open(file2update, 'w') as updater:
+    with open(file2update, 'w', encoding="utf-8") as updater:
         session = requests.session()
         file2download = session.get(url)
         updater.write(file2download.text)
         updater.close()
         session.close()
-        print('\n\t[#] Done Updating File: {}'.format(file_name.split('.')[0]))
+
 
 
 def main():
@@ -57,14 +57,14 @@ def main():
                 print('\n[*] Updating Linux Tools ')
                 for x in LinCheck_url:
                     update(LinCheck_update, x)
-                print('[*] Done Updating Linux Tools')
+                print('\n[*] Done Updating Linux Tools')
                 valid_input = False
 
             elif what2update == 2:
                 print('\n[*] Updating Windows Tools ')
                 for x in WinCheck_url:
                     update(WinCheck_update, x)
-                print('[*] Done Updating Linux Tools')
+                print('\n[*] Done Updating Windows Tools')
                 valid_input = False
 
             elif what2update == 3:
@@ -73,7 +73,7 @@ def main():
                     update(LinCheck_update, x)
                 for x in WinCheck_url:
                     update(WinCheck_update, x)
-                print('[*] Done Updating ALL Tools')
+                print('\n[*] Done Updating ALL Tools')
                 valid_input = False
             else:
                 print('[!] Enter the Right Option')
