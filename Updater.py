@@ -7,7 +7,7 @@ LinCheck_url = [
     'https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh',
     'https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh',
     'https://raw.githubusercontent.com/1N3/PrivEsc/master/linux/scripts/linux_checksec.sh',
-    'https://github.com/1N3/PrivEsc/blob/master/linux/scripts/linux_security_test',
+    'https://raw.githubusercontent.com/1N3/PrivEsc/master/linux/scripts/linux_security_test',
     'https://raw.githubusercontent.com/WazeHell/PE-Linux/master/PE.sh',
     'https://raw.githubusercontent.com/diego-treitos/linux-smart-enumeration/master/lse.sh',
     'https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py',
