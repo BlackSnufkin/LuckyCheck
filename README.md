@@ -65,7 +65,7 @@ LinCheck Tools:
 * [linux_privesc](https://github.com/1N3/PrivEsc/tree/master/linux/scripts)
 * [linux_checksec](https://github.com/1N3/PrivEsc/tree/master/linux/scripts)
 * [SUID3NUM](https://github.com/Anon-Exploiter/SUID3NUM)
-
+* [uptux](https://github.com/initstring/uptux)
 
 
 
