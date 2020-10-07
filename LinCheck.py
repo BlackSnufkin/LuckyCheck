@@ -199,7 +199,7 @@ def les(base_url):
     # Github: https://github.com/mzet-/linux-exploit-suggester
     # Author: mzet
 
-    les = "./linux-exploit-suggester.sh --checksec && ./les.sh"
+    les = "./linux-exploit-suggester.sh --checksec && ./linux-exploit-suggester.sh"
     les_url = base_url + "linux-exploit-suggester.sh"
     print('\n[+] Running linux-exploit-suggester  Scan ')
     LinCheck(cmd=les, url=les_url, output_file="linux-exploit-suggester.txt", input_file="linux-exploit_suggester.sh")
