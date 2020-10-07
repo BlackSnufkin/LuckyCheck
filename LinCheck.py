@@ -288,6 +288,7 @@ def main():
         print('[*] Running Basic LinCheck scan')
         linPEAS(base_url)
         LinEnum(base_url)
+        SUID3NUM(base_url)
         edit_and_send(directory=os.uname()[1], mode='Basic')
         seconds = time.time() - start_time
         print('[$] Done Basic LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
@@ -326,6 +327,7 @@ def main():
         linux_privesc(base_url)
         linux_security_test(base_url)
         lse(base_url)
+        SUID3NUM(base_url)
         edit_and_send(directory=os.uname()[1], mode='Full')
         seconds = time.time() - start_time
         print('[$] Done Full LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
