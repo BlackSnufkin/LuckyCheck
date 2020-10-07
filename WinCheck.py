@@ -180,7 +180,7 @@ def winPEAS(base_url):
     # Github: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite
     # Author: carlospolop
 
-    winPAES = "winPEAS.exe"
+    winPAES = "winPEAS.exe cmd"
     winPEAS_url = base_url + "winPEAS.exe"
     print('\n[+] Running winPEAS Scan ')
     WinCheck(cmd=winPAES, url=winPEAS_url, output_file="winPEAS.txt", input_file="winPEAS.exe")
