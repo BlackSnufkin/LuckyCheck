@@ -11,6 +11,8 @@ LinCheck_url = [
     'https://raw.githubusercontent.com/WazeHell/PE-Linux/master/PE.sh',
     'https://raw.githubusercontent.com/diego-treitos/linux-smart-enumeration/master/lse.sh',
     'https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py',
+    'https://raw.githubusercontent.com/initstring/uptux/master/uptux.py',
+
 ]
 
 WinCheck_update = 'Privesc_Tools/WinCheck/'
@@ -38,7 +40,6 @@ def update(base_directory, url):
         updater.write(file2download.text)
         updater.close()
         session.close()
-
 
 
 def main():

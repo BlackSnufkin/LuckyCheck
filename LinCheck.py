@@ -107,7 +107,7 @@ def edit_and_send(directory, mode):
             with open(f, "rb") as infile:
                 outfile.write(infile.read())
     lines_seen = set()
-    with open("{}-{}-report.txt".format(directory,mode), "w") as output_file:
+    with open("{}-{}-report.txt".format(directory, mode), "w") as output_file:
         for each_line in open("result.txt", "r"):
             if each_line not in lines_seen:
                 output_file.write(each_line)
@@ -139,9 +139,13 @@ def edit_and_send(directory, mode):
     file['file'] = 'FinelReport', open(base_name + '.zip', 'rb').close(), 'application/octet-stream'
     os.remove(base_name + ".zip")
     shutil.rmtree(base_name)
+
+
 '''
 All The Tools in This Script
 '''
+
+
 def linPEAS(base_url):
     # linPEAS
     # Github: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite
@@ -239,18 +243,31 @@ def linux_checksec(base_url):
              input_file="linux_checksec.sh")
     print('\n[+] Done linux_checksec Scan.\n ')
 
+
 def SUID3NUM(base_url):
     # SUID3NUM
     # Github: https://github.com/Anon-Exploiter/SUID3NUM
     # Author: Anon-Exploiter
 
-    suid3num = 'python3 suid3num.py -e'
+    suid3num = './suid3num.py -e'
     suid3num_url = base_url + 'suid3num.py'
     print('\n[+] Running SUID3NUM Scan.\n ')
     LinCheck(cmd=suid3num, url=suid3num_url, output_file="SUID3NUM.txt",
              input_file="suid3num.py")
     print('\n[+] Done SUID3NUM Scan.\n ')
 
+
+def uptux(base_url):
+    # uptux
+    # Github: https://github.com/initstring/uptux
+    # Author initstring
+
+    uptux = './uptux.py -n'
+    uptux_url = base_url + 'uptux.py'
+    print('\n[+] Running uptux Scan.\n ')
+    LinCheck(cmd=uptux, url=uptux_url, output_file="uptux.txt",
+             input_file="uptux.py")
+    print('\n[+] Done uptux Scan.\n ')
 
 
 def user_choice(mode):
@@ -263,7 +280,7 @@ def user_choice(mode):
     if user_accept == 'n':
         print('[!] Deleting All files..')
         os.chdir('..')
-        shutil.rmtree(os.uname()[1]+'-{}'.format(mode))
+        shutil.rmtree(os.uname()[1] + '-{}'.format(mode))
         print('[!] Bye Bye...')
         exit()
     else:
@@ -328,9 +345,11 @@ def main():
         linux_security_test(base_url)
         lse(base_url)
         SUID3NUM(base_url)
+        uptux(base_url)
         edit_and_send(directory=os.uname()[1], mode='Full')
         seconds = time.time() - start_time
         print('[$] Done Full LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
+
 
 if __name__ == '__main__':
     main()
