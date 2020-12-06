@@ -323,7 +323,7 @@ def main():
     if args.basic:
         login()
         print('[*] Basic Host Information:')
-        sysinfo()
+        #sysinfo()
         sleep(1)
         work_space(directory=os.uname()[1], mode='Basic')
         print(
@@ -343,7 +343,7 @@ def main():
     elif args.advanced:
         login()
         print('[*] Basic Host Information:')
-        sysinfo()
+        #sysinfo()
         sleep(1)
         work_space(directory=os.uname()[1], mode='Advanced')
         print(
@@ -363,7 +363,7 @@ def main():
     elif args.full:
         login()
         print('[*] Basic Host Information:')
-        sysinfo()
+        #sysinfo()
         sleep(1)
         work_space(directory=os.uname()[1], mode='Full')
         print(
